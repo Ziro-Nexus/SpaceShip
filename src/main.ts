@@ -1,4 +1,5 @@
 import { Base } from "./models/Base.ts"
+import { engine } from "./config.ts"
 
 /**
  
@@ -19,9 +20,8 @@ serve(handler, {port})
 function main() {
 
     const base = new Base();
-    console.log(base.getId());
-    console.log(base.getICeationDate());
-    console.log(base.getICeationDate().ParseDate());
+    const json = base.getJSON();
+    console.log(json);
 
 }
 

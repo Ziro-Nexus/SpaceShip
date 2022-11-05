@@ -4,6 +4,10 @@ interface IDate {
     day: number,
     month: number,
     year: number,
+    hours: number,
+    minutes: number,
+    seconds: number,
+    milisec: number
     ParseDate: () => string 
 }
 
@@ -25,22 +29,33 @@ export class Base {
             day: date.getDay(),
             month: date.getMonth(),
             year: date.getFullYear(),
+            hours: date.getHours(),
+            minutes: date.getMinutes(),
+            seconds: date.getSeconds(),
+            milisec: date.getMilliseconds(),
             ParseDate: function() {
-                return `${this.day}-${this.month}-${this.year}`
+                const isoFormat = new Date(Date.UTC(
+                    this.year, this.month, this.day, this.hours, this.minutes, this.seconds, this.milisec));
+                return isoFormat.toISOString();
             }
         }
-
         return newDate;
     }
 
+    getJSON() {
+        return JSON.stringify({
+            id: this.getId(),
+            date_creation: this.getICeationDate().ParseDate(),
+            last_modification: this.getIModificationDate().ParseDate(),
+        });
+    }
 
-    
     getICeationDate() {
         return this.ICeationDate;
     }
 
     getIModificationDate() {
-        return this.ICeationDate;
+        return this.IModificationDate;
     }
 
     getId() {

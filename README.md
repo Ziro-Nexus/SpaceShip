@@ -2,5 +2,6 @@
 
 SpaceShip is the API created by universitary students for their videogame.
 
-Diagram for the models
+## Diagram for the models ##
+<hr>
 <img src="/modelsDiagram.png"  style="height: 400px; width:800px;"/>

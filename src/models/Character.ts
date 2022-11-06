@@ -2,15 +2,14 @@ import {Base} from "./Base.ts"
 import { ICharacters } from "../interfaces/ICharacter.ts";
 
 
-export class Character extends Base {
+export abstract class Character extends Base {
 
-    protected ModelName: string;
+    protected abstract ModelName: string;
     protected attributes: ICharacters;
     
 
     constructor(characterAttributes: ICharacters) {
         super();
-        this.ModelName = this.constructor.name;
         this.attributes = characterAttributes;
     }
 
@@ -24,7 +23,9 @@ export class Character extends Base {
         });
     }
 
-    override getObject() {
+    override getObject(): { ModelName: string; Id: string | number[]; 
+        DateCreation: string; LastModification: string; Attributes: ICharacters } {
+    
         return {
             ModelName: this.ModelName,
             Id: this.getId(),
@@ -34,7 +35,7 @@ export class Character extends Base {
         }
     }
 
-    getPlayerName() {
+    getPlayerName(): string {
         return this.attributes.CharacterName;
     }
 }

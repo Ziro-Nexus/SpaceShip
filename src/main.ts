@@ -2,6 +2,7 @@
 import { Character } from "./models/Character.ts"
 import { ICharacters } from "./interfaces/ICharacter.ts";
 import { ISkillsStates } from "./interfaces/ISkills.ts"
+import { Player } from "./models/Player.ts";
 import { SERVER_PORT } from "./config.ts"
 import { serve } from "https://deno.land/std@0.161.0/http/server.ts"
 
@@ -18,8 +19,7 @@ function handler(req: Request): Response {
 
   if (match) {
     const attributesXiro: ICharacters = {
-      CharacterName: "Xiro",
-      typeCharacter: "Player",
+      CharacterName: "Xiroxx",
       Life: 100,
       AttackPower: 20,
       DefensePower: 15,
@@ -29,7 +29,6 @@ function handler(req: Request): Response {
 
      const attributesSef: ICharacters = {
       CharacterName: "Sef",
-      typeCharacter: "Enemy",
       Life: 90,
       AttackPower: 25,
       DefensePower: 20,
@@ -39,7 +38,6 @@ function handler(req: Request): Response {
 
      const attributesJhohan: ICharacters = {
       CharacterName: "Jhohan",
-      typeCharacter: "NPC",
       Life: 120,
       AttackPower: 15,
       DefensePower: 30,
@@ -47,9 +45,9 @@ function handler(req: Request): Response {
       Skills: [{HabilityName: "Shield", Effects: {SkillState: ISkillsStates.BOOST_DEFENSE, value: 30}}]
      };
   
-     const characterXiro: Character = new Character(attributesXiro);
-     const characterSef: Character = new Character(attributesSef);
-     const characterJhohan: Character = new Character(attributesJhohan);
+     const characterXiro: Character = new Player(attributesXiro);
+     const characterSef: Character = new Player(attributesSef);
+     const characterJhohan: Character = new Player(attributesJhohan);
 
      const data = [
       {

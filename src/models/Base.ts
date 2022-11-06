@@ -11,23 +11,29 @@ interface IDate {
     ParseDate: () => string 
 }
 
-export class Base {
+export abstract class Base {
 
-    private Id: string | number[]
-    private ICeationDate: IDate
-    private IModificationDate: IDate
+    protected Id: string | number[]
+    protected CreationDate: IDate
+    protected ModificationDate: IDate
+    protected abstract ModelName: string
     
     constructor() {
         this.Id = v1.generate();
-        this.ICeationDate = this.CreateNewIDate();
-        this.IModificationDate = this.ICeationDate;
+        this.CreationDate = this.CreateNewIDate();
+        this.ModificationDate = this.CreationDate;
+    }
+
+
+    getModelName() {
+        return this.ModelName;
     }
 
     private CreateNewIDate(): IDate {
         const date = new Date();
         const newDate = {
-            day: date.getDay(),
-            month: date.getMonth(),
+            day: date.getDate(),
+            month: date.getMonth() + 1, // zero-indexing 
             year: date.getFullYear(),
             hours: date.getHours(),
             minutes: date.getMinutes(),
@@ -35,7 +41,7 @@ export class Base {
             milisec: date.getMilliseconds(),
             ParseDate: function() {
                 const isoFormat = new Date(Date.UTC(
-                    this.year, this.month, this.day, this.hours, this.minutes, this.seconds, this.milisec));
+                    this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milisec));
                 return isoFormat.toISOString();
             }
         }
@@ -44,18 +50,19 @@ export class Base {
 
     getJSON() {
         return JSON.stringify({
+            model_name: this.ModelName,
             id: this.getId(),
-            date_creation: this.getICeationDate().ParseDate(),
-            last_modification: this.getIModificationDate().ParseDate(),
+            date_creation: this.getCreationDate().ParseDate(),
+            last_modification: this.getModificationDate().ParseDate(),
         });
     }
 
-    getICeationDate() {
-        return this.ICeationDate;
+    getCreationDate() {
+        return this.CreationDate;
     }
 
-    getIModificationDate() {
-        return this.IModificationDate;
+    getModificationDate() {
+        return this.ModificationDate;
     }
 
     getId() {

@@ -1,27 +1,37 @@
 import { Base } from "./models/Base.ts"
-import { engine } from "./config.ts"
+import {TestModel} from "./models/testModel.ts"
 
-/**
- 
-Codigo para crear un servidor basico con 1 sola ruta usando deno js
+import { SERVER_PORT } from "./config.ts"
+import { serve } from "https://deno.land/std@0.161.0/http/server.ts"
 
-import { serve } from "https://deno.land/std@0.161.0/http/server.ts";
 
-const port = 8080;
-const handler = (request: Request): Response => {
-    return new Response("Hola mundo", {status: 200});
-}
 
-console.log("Server is running");
-serve(handler, {port})
-*/
+/**  Ejemplo de routing
+const MAIN_ROUTE = new URLPattern({ pathname: "/main/" });
+function handler(req: Request): Response {
+  const match = MAIN_ROUTE.exec(req.url);
+  if (match) {
+    const base: abstractBase = new Base();
+    return new Response(base.getJSON());
+  }
+  return new Response("Not found", {
+    status: 404,
+  });
+}*/
+
 
 
 function main() {
 
-    const base = new Base();
-    const json = base.getJSON();
-    console.log(json);
+    // No se pueden crear instancias de una clase abstracta
+    // se deberia crear una clase hija que herede de Base
+   // const base: Base = new Base();
+   // console.log(base.getJSON())
+
+    const test = new TestModel();
+    console.log(test.getJSON());
+
+
 
 }
 

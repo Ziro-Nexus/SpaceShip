@@ -25,7 +25,10 @@ Spaceship needs to serve a big amount of data related to characters, items, weap
 
 ## Controller ##
 - create controller to parse any model into a View: pending ❌
+- configure db engine handler for the controller: pending
+- 
 
 ## Views ##
-- Configure routing and handler: pending
+- configure routing and handler: pending
 - Use the controller inside views to parse a Models: pending ❌
+- handle all the routes for all models: pending ❌

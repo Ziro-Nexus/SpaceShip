@@ -1,16 +1,21 @@
+// Base.ts
+
+//Base file contains the abstract class that will be used in all the other models
+
+// importing uuid to use a crypto algorithm to generate a pseudo-random id
 import {v1} from "https://deno.land/std@0.162.0/uuid/mod.ts"
 
-interface IDate {
-    day: number,
-    month: number,
-    year: number,
-    hours: number,
-    minutes: number,
-    seconds: number,
-    milisec: number
-    ParseDate: () => string 
-}
+// importing the interface for Date parsing
+import { IDate } from "../interfaces/IModels.ts"
 
+
+/**
+ * Base - Father class of all models used in SpaceShip proyect
+ * @Id: generated pseudo-random id
+ * @CreationDate: the creation date of the object
+ * @ModificationDate: the modification date of the object
+ * @ 
+ */
 export abstract class Base {
 
     protected Id: string | number[]
@@ -24,7 +29,7 @@ export abstract class Base {
         this.ModificationDate = this.CreationDate;
     }
 
-
+    
     getModelName() {
         return this.ModelName;
     }
@@ -50,11 +55,20 @@ export abstract class Base {
 
     getJSON() {
         return JSON.stringify({
-            model_name: this.ModelName,
-            id: this.getId(),
-            date_creation: this.getCreationDate().ParseDate(),
-            last_modification: this.getModificationDate().ParseDate(),
+            ModelName: this.ModelName,
+            Id: this.getId(),
+            DateCreation: this.getCreationDate().ParseDate(),
+            LastModification: this.getModificationDate().ParseDate(),
         });
+    }
+
+    getObject() {
+        return {
+            ModelName: this.ModelName,
+            Id: this.getId(),
+            DateCreation: this.getCreationDate().ParseDate(),
+            LastModification: this.getModificationDate().ParseDate(),
+        }
     }
 
     getCreationDate() {

@@ -2,7 +2,12 @@
 import { Character } from "./models/Character.ts"
 import { ICharacters } from "./interfaces/ICharacter.ts";
 import { ISkillsStates } from "./interfaces/ISkills.ts"
+
 import { Player } from "./models/Player.ts";
+import { Enemy } from "./models/Enemy.ts";
+import { Ally } from "./models/Ally.ts";
+
+
 import { SERVER_PORT } from "./config.ts"
 import { serve } from "https://deno.land/std@0.161.0/http/server.ts"
 
@@ -46,8 +51,8 @@ function handler(req: Request): Response {
      };
   
      const characterXiro: Character = new Player(attributesXiro);
-     const characterSef: Character = new Player(attributesSef);
-     const characterJhohan: Character = new Player(attributesJhohan);
+     const characterSef: Character = new Enemy(attributesSef);
+     const characterJhohan: Character = new Ally(attributesJhohan);
 
      const data = [
       {

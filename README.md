@@ -7,7 +7,8 @@ SpaceShip is the brain 🧠 of our videogame. It uses a MVC model system to crea
 
 ## Structure of the models ##
 Spaceship needs to serve a big amount of data related to characters, items, weapons and other stuff. For this we will gonna create a model system that will be parsed into an HTTP response with routing included.
-<brr>
+<br>
+<br>
 <img src="/modelsDiagram.png"  style="height: 400px; width:800px;"/>
 
 ## Models List ##

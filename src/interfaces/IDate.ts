@@ -15,12 +15,12 @@
  * @ParseDate: function that parse the object into a valid Date with ISO format
  */
 export interface IDate {
-    day: number,
-    month: number,
-    year: number,
-    hours: number,
-    minutes: number,
-    seconds: number,
-    milisec: number
+    Day: number,
+    Month: number,
+    Year: number,
+    Hours: number,
+    Minutes: number,
+    Seconds: number,
+    Milisec: number
     ParseDate: () => string 
 }

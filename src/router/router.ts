@@ -1,7 +1,8 @@
 import { IRouter } from "../interfaces/IRouter.ts"; // Scheme of the router
-import { main_page } from "../views/main_views.ts";
+import { main_page, usuarios } from "../views/main_views.ts";
 
 
 export const Routes: IRouter[] = [
-    {RouteName: "r1", Pattern: new URLPattern({pathname: "/"}), Methods: ["GET", "POST"], View: main_page},
+    {RouteName: "main", Pattern: new URLPattern({pathname: "/main"}), Methods: ["GET", "POST"], View: main_page},
+    {RouteName: "usuario", Pattern: new URLPattern({pathname: "/usuario"}), Methods: ["POST"], View: usuarios},
 ]

@@ -1,12 +1,18 @@
 import { User } from "../models/User.ts";
 
 export function main_page(): Response {
-    const new_user: User = new User({
-        Name: "asd",
-        LastName: "asdd",
-        Age: 23,
-        Email: "aa",
-        Password: "asd"
-      });
-    return new Response(new_user.getJSON());
+  
+    return new Response("Hola mundo");
+}
+
+
+export function usuarios(): Response {
+  const new_user: User = new User({
+      Name: "Jhojan",
+      LastName: "Toro",
+      Age: 23,
+      Email: "cualquieremail@gmail.com",
+      Password: "123"
+    });
+  return new Response(new_user.getJSON());
 }

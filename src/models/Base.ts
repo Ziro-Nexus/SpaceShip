@@ -6,7 +6,7 @@
 import {v1} from "https://deno.land/std@0.162.0/uuid/mod.ts"
 
 // importing the interface for Date parsing
-import { IDate } from "../interfaces/IModels.ts"
+import { IDate } from "../interfaces/IDate.ts" // Shcema of the models
 
 
 /**
@@ -37,16 +37,16 @@ export abstract class Base {
     private CreateNewIDate(): IDate {
         const date = new Date();
         const newDate = {
-            day: date.getDate(),
-            month: date.getMonth() + 1, // zero-indexing 
-            year: date.getFullYear(),
-            hours: date.getHours(),
-            minutes: date.getMinutes(),
-            seconds: date.getSeconds(),
-            milisec: date.getMilliseconds(),
+            Day: date.getDate(),
+            Month: date.getMonth() + 1, // zero-indexing 
+            Year: date.getFullYear(),
+            Hours: date.getHours(),
+            Minutes: date.getMinutes(),
+            Seconds: date.getSeconds(),
+            Milisec: date.getMilliseconds(),
             ParseDate: function() {
                 const isoFormat = new Date(Date.UTC(
-                    this.year, this.month - 1, this.day, this.hours, this.minutes, this.seconds, this.milisec));
+                    this.Year, this.Month - 1, this.Day, this.Hours, this.Minutes, this.Seconds, this.Milisec));
                 return isoFormat.toISOString();
             }
         }

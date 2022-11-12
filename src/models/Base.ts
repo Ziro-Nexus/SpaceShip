@@ -53,23 +53,27 @@ export abstract class Base {
         return newDate;
     }
 
-    getJSON() {
-        return JSON.stringify({
-            ModelName: this.ModelName,
-            Id: this.getId(),
-            DateCreation: this.getCreationDate().ParseDate(),
-            LastModification: this.getModificationDate().ParseDate(),
-        });
-    }
 
     getObject() {
-        return {
-            ModelName: this.ModelName,
-            Id: this.getId(),
-            DateCreation: this.getCreationDate().ParseDate(),
-            LastModification: this.getModificationDate().ParseDate(),
+        const res = {};
+
+        for (const [key, value] of Object.entries(this)) {
+            if (key == "CreationDate" || key == "ModificationDate") {
+                const date: IDate = value;
+                Object.assign(res, {[key]: date.ParseDate()});
+                continue;
+            }
+            Object.assign(res, {[key]: value})
         }
+
+        return res;
     }
+
+
+    getJSON() {
+        return JSON.stringify(this.getObject());
+    }
+
 
     getCreationDate() {
         return this.CreationDate;
